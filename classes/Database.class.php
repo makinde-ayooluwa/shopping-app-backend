@@ -16,9 +16,11 @@ class Database
         $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         return $this->pdo;
     }
-    public function queryDb($query)
-    {
-        $this->pdo->query($query);
-        return "Db queried successfully";
+    public function queryDb($query){
+        try {
+            $this->pdo->query($query);
+        } catch (PDOException $th) {
+            throw new Exception($th->getMessage());
+        }
     }
 }

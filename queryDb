@@ -1,2 +1,6 @@
 <?php
 
+include "autoload.php";
+$queries = file_get_contents("database/db.sql");
+$dbClass->queryDb($queries);
+echo "Database queried successfully";
